@@ -1,0 +1,15 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.form-forgot {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-forgot input[type="text"] {
+  margin-bottom: 10px;
+}

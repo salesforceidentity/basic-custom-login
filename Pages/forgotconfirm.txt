@@ -1,0 +1,38 @@
+<apex:page id="loginPage" showHeader="false" showChat="false" sidebar="false" standardStylesheets="false" controller="ForgotPasswordController">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Forgot Password</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{!URLFOR($Resource.include, '_include/css/bootstrap.min.css')}" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="{!URLFOR($Resource.include, '_include/css/forgot.css')}" rel="stylesheet" />
+
+</head>
+
+  <body>
+
+    <div class="container">
+
+      <div styleClass="form-forgot">
+        <h2>An email has been sent to you with your temporary password.</h2>
+        <a href="./signin">Sign in</a>        
+      </div>
+      
+    </div> 
+    
+    
+<script src="{!URLFOR($Resource.include, '_include/js/jquery-1.10.2.min.js')}"></script>
+<script>
+$(document).ready(function() {
+    $('.un').attr('placeholder','Username');
+});
+</script>   
+
+    
+  </body>
+
+</apex:page>

@@ -1,0 +1,65 @@
+<apex:page id="loginPage" showHeader="false" showChat="false" sidebar="false" standardStylesheets="false" standardController="User" extensions="SignupController" >
+<head>
+    <title>Sign Up</title>
+    <link href="{!URLFOR($Resource.include, '_include/css/bootstrap.min.css')}" rel="stylesheet"/>
+    <link href="{!URLFOR($Resource.include, '_include/css/signup.css')}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <apex:form id="theForm" forceSSL="true" styleClass="form-horizontal">
+           <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"><h2 class="form-signin-heading">Please sign up</h2></div>
+                <div class="col-md-4"></div>
+           </div>
+           <apex:repeat value="{!$ObjectType.User.FieldSets.Registration}" var="f">  
+           <div class="form-group">
+               <div class="col-md-4"></div>
+               <div class="col-md-4">
+                   <apex:inputField value="{!User[f]}" styleClass="form-control reg_{!f.fieldpath}"  onfocus="$('#req_{!f.fieldpath}').fadeIn();"/> 
+                </div>
+                <div class="col-md-4"><apex:outputText rendered="{!f.dbrequired}"><span id="req_{!f.fieldpath}" style="display:none;color:red;">required</span></apex:outputText></div>
+            </div>
+            </apex:repeat>  
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <apex:inputSecret id="reg_password" value="{!reg_password}" styleClass="form-control reg_password" onfocus="$('#req_pw').fadeIn();"/>           
+                </div>
+                <div class="col-md-4"><span id="req_pw" style="display:none;color:red;">required</span></div>
+            </div>            
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <apex:inputSecret id="reg_confirmPassword" value="{!reg_confirmPassword}" styleClass="form-control reg_confirmPassword" onfocus="$('#req_cpw').fadeIn();"/> 
+                </div>               
+                <div class="col-md-4"><span id="req_cpw" style="display:none;color:red;">required</span></div>
+            </div>                    
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <apex:commandButton action="{!registerUser}" value="Sign Up" id="login-submit" styleClass="btn btn-lg btn-primary btn-block"/>            
+                </div>
+                <div class="col-md-4"></div>
+            </div>            
+       </apex:form>                  
+    </div> 
+    <script src="{!URLFOR($Resource.include, '_include/js/jquery-1.10.2.min.js')}"></script>
+    <script>
+    $(document).ready(function() {
+        $('.un').attr('placeholder','{!$Label.site.username}');
+        $('.pw').attr('placeholder','{!$Label.site.password}');
+        
+        <apex:repeat value="{!$ObjectType.User.FieldSets.Registration}" var="f">  
+        $('.reg_{!f.fieldpath}').attr('placeholder','{!f.label}');
+        </apex:repeat>
+    
+        
+        $('.reg_password').attr('placeholder','Password');
+        $('.reg_confirmPassword').attr('placeholder','Confirm Password');
+        
+    });
+    </script>     
+</body>
+</apex:page>

@@ -1,0 +1,61 @@
+<apex:page id="loginPage" showHeader="false" showChat="false" sidebar="false" standardStylesheets="false" controller="SigninController">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sign In</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{!URLFOR($Resource.include, '_include/css/bootstrap.min.css')}" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="{!URLFOR($Resource.include, '_include/css/signin.css')}" rel="stylesheet" />
+
+</head>
+
+  <body>
+
+    <div class="container">
+
+      <apex:form id="loginForm" forceSSL="true" styleClass="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <apex:pageMessages showDetail="false" id="error"/>
+        
+        <apex:inputText required="true" id="login-email" styleClass="form-control un" value="{!username}" label="Username"/>
+        <apex:inputSecret id="login-password" styleClass="form-control pw" value="{!password}" label="Pasword"/>
+        
+        
+        <apex:commandButton action="{!login}" value="Sign in" id="login-submit" styleClass="btn btn-lg btn-primary btn-block"/>
+        <br/>
+        <div id="login-option">
+            <span class="form-signin-forgot"><a href="./forgot" >Forgot Password?</a></span>
+            <span><a href="./signup" class="nextsection">Don't have an account?</a></span>
+        </div>
+          <br/>
+          <br/>  
+          <apex:repeat value="{!authProviders}" var="ap">
+          <a class="btn btn-lg btn-block btn-default" href="https://login.salesforce.com/services/auth/sso/{!orgId}/{!ap.developername}?community={!encodedSiteUrl}&startUrl={!encodedStartUrl}">
+             login with {!ap.FriendlyName}
+          </a>
+          <br/>
+          </apex:repeat>
+          
+
+      
+      </apex:form>
+      
+      
+    </div> 
+  </body>
+
+<script src="{!URLFOR($Resource.include, '_include/js/jquery-1.10.2.min.js')}"></script>
+<script>
+$(document).ready(function() {
+    $('.un').attr('placeholder','{!$Label.site.username}');
+    $('.pw').attr('placeholder','{!$Label.site.password}');
+});
+</script>   
+
+
+
+</apex:page>
