@@ -11,7 +11,7 @@ global with sharing class SigninController {
     
     global SigninController () {
         orgId = UserInfo.getOrganizationId();
-        siteURL  = Site.getCurrentSiteUrl();
+        siteURL  = Site.getBaseUrl();
         startURL = System.currentPageReference().getParameters().get('startURL');
         if (startURL == null) startURL = '/';
         authProviders = [SELECT Id,DeveloperName,FriendlyName,ProviderType FROM AuthProvider];
